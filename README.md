@@ -5,6 +5,7 @@
 [![Architecture](https://img.shields.io/badge/Architecture-MVC%20%2B%20DAO-2563EB?style=for-the-badge)](docs/)
 [![Database](https://img.shields.io/badge/Database-MySQL%208.0%20%7C%20In--Memory-00758F?style=for-the-badge&logo=mysql&logoColor=white)](database/schema.sql)
 [![Tests](https://img.shields.io/badge/Tests-37%20Passed%20%7C%200%20Failed-10B981?style=for-the-badge)](docs/MILESTONE_10_TEST_REPORT.md)
+[![Vercel](https://img.shields.io/badge/Vercel-Deployable-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FRich12-max%2FCampusBazaar.git)
 [![Status](https://img.shields.io/badge/Status-Complete%20%26%20Verified-8B5CF6?style=for-the-badge)](Campus_Peer_to_Peer_Marketplace_Project_Report.pdf)
 
 ---
@@ -158,6 +159,30 @@ The repository includes complete, university-ready documentation:
 1. **[Academic Project Report (DOCX)](Campus_Peer_to_Peer_Marketplace_Project_Report.docx):** Complete editable report formatted with academic cover page, certificate, abstract, 10 chapters, tables, and appendices.
 2. **[Academic Project Report (PDF)](Campus_Peer_to_Peer_Marketplace_Project_Report.pdf):** Clean printable PDF format.
 3. **[Viva Voce Preparation Manual](docs/FINAL_PROJECT_REPORT_AND_VIVA_MANUAL.md):** High-priority questions and detailed technical answers for oral evaluation.
+
+---
+
+## 🚀 Deploy to Vercel (1-Click Deployment)
+
+The web portal is completely Vercel-ready with zero additional configuration required.
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FRich12-max%2FCampusBazaar.git)
+
+### Manual Deployment via Vercel Dashboard:
+1. Go to [Vercel](https://vercel.com) and click **"Add New Project"**.
+2. Select and import **`https://github.com/Rich12-max/CampusBazaar.git`**.
+3. Leave all settings at their defaults:
+   - **Framework Preset:** `Other` (or auto-detected)
+   - **Root Directory:** `./`
+   - **Build Command:** *(leave empty or default)*
+   - **Output Directory:** *(leave empty or default)*
+4. Click **Deploy**. Your campus marketplace web portal and serverless status API will go live instantly on `https://<your-project>.vercel.app`.
+
+### Deployment via Vercel CLI:
+```bash
+npm install -g vercel
+vercel
+```
 
 ---
 

@@ -1,0 +1,18 @@
+# Compiled Class Files & Build Directories
+bin/
+target/
+*.class
+
+# Python Bytecode & Cache
+__pycache__/
+*.py[cod]
+
+# IDE Configuration
+.idea/
+.vscode/
+*.iml
+
+# OS and Log Files
+*.log
+.DS_Store
+Thumbs.db

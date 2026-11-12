@@ -1,11 +1,11 @@
 # 🎓 Campus Peer-to-Peer Marketplace (`CampusBazaar`)
 ### End-Semester Academic Software Project – Object-Oriented Programming Using Java
 
-[![Java](https://img.shields.io/badge/Java-17%2B-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.oracle.com/java/)
+[![Java](https://img.shields.io/badge/Language-100%25%20Pure%20Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.oracle.com/java/)
+[![JavaFX](https://img.shields.io/badge/UI-JavaFX%20%7C%20JavaFX%20CSS-FF6F00?style=for-the-badge)](src/main/resources/styles/marketplace.css)
 [![Architecture](https://img.shields.io/badge/Architecture-MVC%20%2B%20DAO-2563EB?style=for-the-badge)](docs/)
 [![Database](https://img.shields.io/badge/Database-MySQL%208.0%20%7C%20In--Memory-00758F?style=for-the-badge&logo=mysql&logoColor=white)](database/schema.sql)
 [![Tests](https://img.shields.io/badge/Tests-37%20Passed%20%7C%200%20Failed-10B981?style=for-the-badge)](docs/MILESTONE_10_TEST_REPORT.md)
-[![Vercel](https://img.shields.io/badge/Vercel-Deployable-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FRich12-max%2FCampusBazaar.git)
 [![Status](https://img.shields.io/badge/Status-Complete%20%26%20Verified-8B5CF6?style=for-the-badge)](Campus_Peer_to_Peer_Marketplace_Project_Report.pdf)
 
 ---
@@ -162,27 +162,27 @@ The repository includes complete, university-ready documentation:
 
 ---
 
-## 🚀 Deploy to Vercel (1-Click Deployment)
+## 🚀 How to Run the 100% Pure Java Application
 
-The web portal is completely Vercel-ready with zero additional configuration required.
+The project is built entirely in **Java 17+ and JavaFX**, requiring no web servers or external Node/Python runtimes.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FRich12-max%2FCampusBazaar.git)
-
-### Manual Deployment via Vercel Dashboard:
-1. Go to [Vercel](https://vercel.com) and click **"Add New Project"**.
-2. Select and import **`https://github.com/Rich12-max/CampusBazaar.git`**.
-3. Leave all settings at their defaults:
-   - **Framework Preset:** `Other` (or auto-detected)
-   - **Root Directory:** `./`
-   - **Build Command:** *(leave empty or default)*
-   - **Output Directory:** *(leave empty or default)*
-4. Click **Deploy**. Your campus marketplace web portal and serverless status API will go live instantly on `https://<your-project>.vercel.app`.
-
-### Deployment via Vercel CLI:
-```bash
-npm install -g vercel
-vercel
+### Option 1: Double-Click Batch Launch (Windows)
+Double-click `run.bat` (or execute from terminal):
+```cmd
+build.bat
+run.bat
 ```
+
+### Option 2: Run via Maven (IntelliJ IDEA / Eclipse / CLI)
+```bash
+mvn compile javafx:run
+```
+
+### Option 3: Run the Automated Academic Verification Test Suite
+```bash
+java -cp "bin;lib/*" com.campusbazaar.test.CampusMarketplaceTestSuite
+```
+*(Executes all 37 automated tests validating polymorphism, rental penalties, OTP PINs, and SHA-256 signatures).*
 
 ---
 

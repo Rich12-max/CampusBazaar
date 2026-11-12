@@ -1,0 +1,542 @@
+/* =========================================================================
+   CAMPUSBAZAAR - JAVAFX DESIGN SYSTEM & STYLESHEET
+   100% Native JavaFX CSS mirroring the Modern Glassmorphism Web Interface
+   ========================================================================= */
+
+.root {
+    -fx-font-family: 'Plus Jakarta Sans', 'Segoe UI', -apple-system, sans-serif;
+    -fx-font-size: 13px;
+    -fx-background-color: #F8FAFC;
+    
+    /* Theme Tokens: Campus Classic (Default) */
+    -cb-primary: #2563EB;
+    -cb-primary-light: #EFF6FF;
+    -cb-primary-dark: #1D4ED8;
+    -cb-accent: #4F46E5;
+    -cb-mint: #10B981;
+    -cb-mint-light: #ECFDF5;
+    -cb-amber: #F59E0B;
+    -cb-bg: #F8FAFC;
+    -cb-card-bg: #FFFFFF;
+    -cb-card-border: #E2E8F0;
+    -cb-text: #0F172A;
+    -cb-text-muted: #64748B;
+    -cb-border: #E2E8F0;
+}
+
+/* =========================================================================
+   THEME PALETTES (Dynamically swapped via ThemeManager)
+   ========================================================================= */
+
+.theme-campus {
+    -cb-primary: #2563EB;
+    -cb-primary-light: #EFF6FF;
+    -cb-primary-dark: #1D4ED8;
+    -cb-accent: #4F46E5;
+    -cb-bg: #F8FAFC;
+    -cb-card-bg: #FFFFFF;
+    -cb-card-border: #E2E8F0;
+    -cb-text: #0F172A;
+    -cb-text-muted: #64748B;
+    -cb-border: #E2E8F0;
+}
+
+.theme-slate {
+    -cb-primary: #38BDF8;
+    -cb-primary-light: #1E293B;
+    -cb-primary-dark: #0284C7;
+    -cb-accent: #818CF8;
+    -cb-bg: #0B1120;
+    -cb-card-bg: #111827;
+    -cb-card-border: #334155;
+    -cb-text: #F8FAFC;
+    -cb-text-muted: #94A3B8;
+    -cb-border: #334155;
+}
+
+.theme-matcha {
+    -cb-primary: #10B981;
+    -cb-primary-light: #ECFDF5;
+    -cb-primary-dark: #059669;
+    -cb-accent: #047857;
+    -cb-bg: #F4FBF7;
+    -cb-card-bg: #FFFFFF;
+    -cb-card-border: #D1FAE5;
+    -cb-text: #064E3B;
+    -cb-text-muted: #047857;
+    -cb-border: #A7F3D0;
+}
+
+.theme-sakura {
+    -cb-primary: #F43F5E;
+    -cb-primary-light: #FFF1F2;
+    -cb-primary-dark: #E11D48;
+    -cb-accent: #EC4899;
+    -cb-bg: #FFF5F7;
+    -cb-card-bg: #FFFFFF;
+    -cb-card-border: #FFE4E6;
+    -cb-text: #4C0519;
+    -cb-text-muted: #9F1239;
+    -cb-border: #FECDD3;
+}
+
+.theme-lavender {
+    -cb-primary: #A855F7;
+    -cb-primary-light: #1E1238;
+    -cb-primary-dark: #9333EA;
+    -cb-accent: #C084FC;
+    -cb-bg: #0D0B18;
+    -cb-card-bg: #18132B;
+    -cb-card-border: #3B2A56;
+    -cb-text: #F8FAFC;
+    -cb-text-muted: #C084FC;
+    -cb-border: #3B2A56;
+}
+
+.theme-honey {
+    -cb-primary: #D97706;
+    -cb-primary-light: #FFFBEB;
+    -cb-primary-dark: #B45309;
+    -cb-accent: #F59E0B;
+    -cb-bg: #FFFBEB;
+    -cb-card-bg: #FFFFFF;
+    -cb-card-border: #FDE68A;
+    -cb-text: #78350F;
+    -cb-text-muted: #B45309;
+    -cb-border: #FDE68A;
+}
+
+.theme-gold {
+    -cb-primary: #D4AF37;
+    -cb-primary-light: #2A2415;
+    -cb-primary-dark: #B8860B;
+    -cb-accent: #F3C64F;
+    -cb-bg: #14120C;
+    -cb-card-bg: #1C1810;
+    -cb-card-border: #3D331B;
+    -cb-text: #FDFBF4;
+    -cb-text-muted: #C5B695;
+    -cb-border: #3D331B;
+}
+
+.theme-midnight {
+    -cb-primary: #8B5CF6;
+    -cb-primary-light: #18152B;
+    -cb-primary-dark: #7C3AED;
+    -cb-accent: #EC4899;
+    -cb-bg: #0A0A10;
+    -cb-card-bg: #12111F;
+    -cb-card-border: #28243D;
+    -cb-text: #F8FAFC;
+    -cb-text-muted: #A5B4FC;
+    -cb-border: #28243D;
+}
+
+/* =========================================================================
+   TOP NAVBAR
+   ========================================================================= */
+
+.top-navbar {
+    -fx-background-color: -cb-card-bg;
+    -fx-border-color: transparent transparent -cb-border transparent;
+    -fx-border-width: 0 0 1px 0;
+    -fx-padding: 10px 24px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.brand-box {
+    -fx-alignment: CENTER_LEFT;
+    -fx-spacing: 10px;
+    -fx-cursor: hand;
+}
+
+.brand-logo-icon {
+    -fx-background-color: linear-gradient(to bottom right, -cb-primary, -cb-accent);
+    -fx-background-radius: 12px;
+    -fx-padding: 6px 10px;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.brand-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: 800;
+    -fx-text-fill: -cb-text;
+}
+
+.brand-accent {
+    -fx-text-fill: -cb-primary;
+}
+
+.brand-subtitle {
+    -fx-font-size: 10px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -cb-primary;
+    -fx-letter-spacing: 0.5px;
+}
+
+/* Sell Item Action Button (Emerald Gradient) */
+.btn-sell-action {
+    -fx-background-color: linear-gradient(to bottom right, #10B981, #059669);
+    -fx-background-radius: 9999px;
+    -fx-border-radius: 9999px;
+    -fx-text-fill: white;
+    -fx-font-weight: 800;
+    -fx-font-size: 12px;
+    -fx-padding: 7px 16px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(16, 185, 129, 0.28), 8, 0, 0, 3);
+}
+
+.btn-sell-action:hover {
+    -fx-background-color: linear-gradient(to bottom right, #059669, #047857);
+}
+
+/* Corner Search Trigger Button */
+.corner-search-icon-btn {
+    -fx-background-color: -cb-card-bg;
+    -fx-border-color: -cb-border;
+    -fx-border-radius: 9999px;
+    -fx-background-radius: 9999px;
+    -fx-border-width: 1.5px;
+    -fx-text-fill: -cb-text;
+    -fx-font-weight: 800;
+    -fx-font-size: 12px;
+    -fx-padding: 6px 14px;
+    -fx-cursor: hand;
+}
+
+.corner-search-icon-btn:hover {
+    -fx-border-color: -cb-primary;
+    -fx-text-fill: -cb-primary;
+    -fx-background-color: -cb-primary-light;
+}
+
+/* Smart Pricing Nav Button */
+.nav-action-btn {
+    -fx-background-color: -cb-card-bg;
+    -fx-border-color: -cb-border;
+    -fx-border-radius: 9999px;
+    -fx-background-radius: 9999px;
+    -fx-border-width: 1px;
+    -fx-text-fill: -cb-text;
+    -fx-font-weight: 700;
+    -fx-font-size: 12px;
+    -fx-padding: 6px 12px;
+    -fx-cursor: hand;
+}
+
+.nav-action-btn:hover {
+    -fx-background-color: -cb-primary-light;
+    -fx-text-fill: -cb-primary;
+}
+
+/* Theme Selector Wrap & Dots */
+.theme-selector-wrap {
+    -fx-background-color: -cb-card-bg;
+    -fx-border-color: -cb-border;
+    -fx-border-radius: 9999px;
+    -fx-background-radius: 9999px;
+    -fx-border-width: 1px;
+    -fx-padding: 3px 8px;
+    -fx-alignment: CENTER;
+    -fx-spacing: 5px;
+}
+
+.theme-dot {
+    -fx-min-width: 17px;
+    -fx-min-height: 17px;
+    -fx-max-width: 17px;
+    -fx-max-height: 17px;
+    -fx-background-radius: 50%;
+    -fx-cursor: hand;
+}
+
+.theme-reset-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: -cb-text-muted;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-padding: 0 4px;
+}
+
+/* User Persona Pill */
+.user-persona-pill {
+    -fx-background-color: -cb-card-bg;
+    -fx-border-color: -cb-border;
+    -fx-border-radius: 9999px;
+    -fx-background-radius: 9999px;
+    -fx-border-width: 1px;
+    -fx-padding: 4px 12px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-spacing: 8px;
+    -fx-cursor: hand;
+}
+
+.user-persona-avatar {
+    -fx-background-color: linear-gradient(to bottom right, -cb-primary, -cb-accent);
+    -fx-background-radius: 50%;
+    -fx-min-width: 26px;
+    -fx-min-height: 26px;
+    -fx-alignment: CENTER;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 11px;
+}
+
+/* =========================================================================
+   SUB-NAVBAR (CATEGORY & FEATURE TABS)
+   ========================================================================= */
+
+.sub-navbar {
+    -fx-background-color: -cb-card-bg;
+    -fx-border-color: transparent transparent -cb-border transparent;
+    -fx-border-width: 0 0 1px 0;
+    -fx-padding: 8px 24px;
+    -fx-alignment: CENTER_RIGHT;
+    -fx-spacing: 6px;
+}
+
+.nav-tab-btn {
+    -fx-background-color: transparent;
+    -fx-background-radius: 9999px;
+    -fx-border-radius: 9999px;
+    -fx-border-color: transparent;
+    -fx-text-fill: -cb-text-muted;
+    -fx-font-weight: 700;
+    -fx-font-size: 12px;
+    -fx-padding: 6px 13px;
+    -fx-cursor: hand;
+}
+
+.nav-tab-btn:hover {
+    -fx-background-color: -cb-primary-light;
+    -fx-text-fill: -cb-primary;
+}
+
+.nav-tab-btn.active {
+    -fx-background-color: -cb-primary;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.12), 6, 0, 0, 2);
+}
+
+.nav-badge-pill {
+    -fx-background-color: rgba(0, 0, 0, 0.12);
+    -fx-background-radius: 9999px;
+    -fx-text-fill: inherit;
+    -fx-font-size: 10px;
+    -fx-font-weight: 800;
+    -fx-padding: 1px 6px;
+}
+
+.nav-tab-btn.active .nav-badge-pill {
+    -fx-background-color: rgba(255, 255, 255, 0.35);
+    -fx-text-fill: white;
+}
+
+/* =========================================================================
+   HERO BANNER
+   ========================================================================= */
+
+.hero-banner {
+    -fx-background-color: linear-gradient(to bottom right, #1E3A8A, #2563EB, #4F46E5);
+    -fx-background-radius: 24px;
+    -fx-padding: 32px 36px;
+    -fx-spacing: 14px;
+    -fx-effect: dropshadow(three-pass-box, rgba(37, 99, 235, 0.25), 18, 0, 0, 6);
+}
+
+.hero-floral-badge {
+    -fx-background-color: rgba(255, 255, 255, 0.18);
+    -fx-border-color: rgba(255, 255, 255, 0.4);
+    -fx-border-radius: 9999px;
+    -fx-background-radius: 9999px;
+    -fx-padding: 5px 14px;
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+    -fx-font-size: 11px;
+}
+
+.hero-title {
+    -fx-font-size: 26px;
+    -fx-font-weight: 800;
+    -fx-text-fill: white;
+}
+
+.hero-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: rgba(255, 255, 255, 0.9);
+    -fx-line-spacing: 3px;
+}
+
+.hero-chip {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+    -fx-border-color: rgba(255, 255, 255, 0.3);
+    -fx-border-radius: 9999px;
+    -fx-background-radius: 9999px;
+    -fx-padding: 5px 12px;
+    -fx-text-fill: white;
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+}
+
+.hero-sell-btn {
+    -fx-background-color: white;
+    -fx-text-fill: #0F172A;
+    -fx-background-radius: 9999px;
+    -fx-padding: 8px 20px;
+    -fx-font-weight: 800;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 8, 0, 0, 3);
+}
+
+.hero-find-btn {
+    -fx-background-color: rgba(255, 255, 255, 0.22);
+    -fx-border-color: rgba(255, 255, 255, 0.4);
+    -fx-border-radius: 9999px;
+    -fx-background-radius: 9999px;
+    -fx-text-fill: white;
+    -fx-padding: 8px 18px;
+    -fx-font-weight: 800;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+}
+
+/* =========================================================================
+   CONTROLS & SEARCH SECTION
+   ========================================================================= */
+
+.controls-card {
+    -fx-background-color: -cb-card-bg;
+    -fx-border-color: -cb-border;
+    -fx-border-radius: 18px;
+    -fx-background-radius: 18px;
+    -fx-padding: 16px 20px;
+    -fx-spacing: 12px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.search-field {
+    -fx-background-color: -cb-card-bg;
+    -fx-border-color: -cb-border;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+    -fx-padding: 9px 14px;
+    -fx-font-size: 13px;
+    -fx-text-fill: -cb-text;
+}
+
+.search-field:focused {
+    -fx-border-color: -cb-primary;
+}
+
+.filter-combo {
+    -fx-background-color: -cb-card-bg;
+    -fx-border-color: -cb-border;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+    -fx-padding: 4px 8px;
+    -fx-font-size: 12px;
+}
+
+/* =========================================================================
+   PRODUCT CARDS GRID
+   ========================================================================= */
+
+.product-card {
+    -fx-background-color: -cb-card-bg;
+    -fx-border-color: -cb-card-border;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-padding: 16px;
+    -fx-spacing: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.05), 10, 0, 0, 3);
+}
+
+.product-card:hover {
+    -fx-border-color: -cb-primary;
+    -fx-effect: dropshadow(three-pass-box, rgba(37, 99, 235, 0.18), 16, 0, 0, 5);
+}
+
+.card-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: 800;
+    -fx-text-fill: -cb-text;
+}
+
+.card-price {
+    -fx-font-size: 16px;
+    -fx-font-weight: 800;
+    -fx-text-fill: -cb-primary;
+}
+
+.badge-condition {
+    -fx-background-color: -cb-primary-light;
+    -fx-text-fill: -cb-primary;
+    -fx-background-radius: 9999px;
+    -fx-padding: 2px 8px;
+    -fx-font-size: 10px;
+    -fx-font-weight: 800;
+}
+
+.badge-type-sale {
+    -fx-background-color: linear-gradient(to bottom right, #2563EB, #3B82F6);
+    -fx-text-fill: white;
+    -fx-background-radius: 9999px;
+    -fx-padding: 3px 9px;
+    -fx-font-size: 10px;
+    -fx-font-weight: 800;
+}
+
+.badge-type-rent {
+    -fx-background-color: linear-gradient(to bottom right, #4F46E5, #6366F1);
+    -fx-text-fill: white;
+    -fx-background-radius: 9999px;
+    -fx-padding: 3px 9px;
+    -fx-font-size: 10px;
+    -fx-font-weight: 800;
+}
+
+.badge-type-barter {
+    -fx-background-color: linear-gradient(to bottom right, #059669, #10B981);
+    -fx-text-fill: white;
+    -fx-background-radius: 9999px;
+    -fx-padding: 3px 9px;
+    -fx-font-size: 10px;
+    -fx-font-weight: 800;
+}
+
+.btn-card-action {
+    -fx-background-color: -cb-primary;
+    -fx-background-radius: 9999px;
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+    -fx-font-size: 12px;
+    -fx-padding: 7px 14px;
+    -fx-cursor: hand;
+}
+
+.btn-card-action:hover {
+    -fx-background-color: -cb-primary-dark;
+}
+
+/* =========================================================================
+   FLOATING CORNER SEARCH BUTTON
+   ========================================================================= */
+
+.floating-corner-search {
+    -fx-background-color: -cb-card-bg;
+    -fx-border-color: -cb-primary;
+    -fx-border-width: 2px;
+    -fx-background-radius: 9999px;
+    -fx-border-radius: 9999px;
+    -fx-padding: 10px 18px;
+    -fx-text-fill: -cb-primary;
+    -fx-font-weight: 800;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(37, 99, 235, 0.3), 14, 0, 0, 4);
+}

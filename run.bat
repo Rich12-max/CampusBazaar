@@ -1,11 +1,11 @@
 @echo off
 echo =========================================================================
-echo Starting Campus Peer-to-Peer Marketplace on http://localhost:8080
+echo   CAMPUSBAZAAR: CAMPUS PEER-TO-PEER MARKETPLACE (100%% JAVA & JAVAFX)
 echo =========================================================================
 if not exist bin (
     call build.bat
 )
-start http://localhost:8080
-java -cp bin com.campusbazaar.Main
+echo.
+echo Launching Native JavaFX Campus Marketplace Application...
+java --module-path lib --add-modules javafx.controls,javafx.fxml,javafx.graphics -cp bin com.campusbazaar.CampusBazaarApp
 pause
-

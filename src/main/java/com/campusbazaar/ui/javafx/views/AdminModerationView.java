@@ -86,3 +86,4 @@ public class AdminModerationView extends VBox {
         return card;
     }
 }
+

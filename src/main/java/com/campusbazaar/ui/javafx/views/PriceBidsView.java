@@ -78,3 +78,4 @@ public class PriceBidsView extends VBox {
         getChildren().addAll(header, threadCard);
     }
 }
+

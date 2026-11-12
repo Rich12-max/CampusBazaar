@@ -87,3 +87,4 @@ public class CatalogueGridView extends VBox {
         }
     }
 }
+

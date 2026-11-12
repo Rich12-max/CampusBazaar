@@ -85,3 +85,4 @@ public class HeroBannerView extends VBox {
         getChildren().addAll(badgeBox, titleLabel, subtitleLabel, chipsPane, ctaBox);
     }
 }
+

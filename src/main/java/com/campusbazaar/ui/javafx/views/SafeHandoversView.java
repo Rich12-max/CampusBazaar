@@ -78,3 +78,4 @@ public class SafeHandoversView extends VBox {
         getChildren().addAll(header, zoneCard, scheduleCard);
     }
 }
+

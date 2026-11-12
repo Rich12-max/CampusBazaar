@@ -106,3 +106,4 @@ public class ControlsSectionView extends HBox {
         return searchField;
     }
 }
+

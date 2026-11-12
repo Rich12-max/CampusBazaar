@@ -86,3 +86,4 @@ public class ClearanceReceiptsView extends VBox {
         return box;
     }
 }
+

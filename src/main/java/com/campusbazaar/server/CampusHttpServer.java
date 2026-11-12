@@ -1,5 +1,6 @@
 package com.campusbazaar.server;
 
+import com.campusbazaar.controller.*;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
@@ -44,9 +45,28 @@ public class CampusHttpServer {
             throw new IOException("Could not bind HttpServer on ports " + targetPort + " through " + (targetPort + 10));
         }
 
+        // Register controllers and API dispatcher
+        ListingController listingController = new ListingController();
+        PricingController pricingController = new PricingController();
+        RentalController rentalController = new RentalController();
+        NegotiationController negotiationController = new NegotiationController();
+        HandoverController handoverController = new HandoverController();
+        ReceiptController receiptController = new ReceiptController();
+        AuthController authController = new AuthController();
+
+        ApiDispatcherHandler apiDispatcher = new ApiDispatcherHandler(
+                listingController,
+                pricingController,
+                rentalController,
+                negotiationController,
+                handoverController,
+                receiptController,
+                authController
+        );
+
         // Register handlers
         server.createContext("/", new StaticFileHandler());
-        server.createContext("/api/status", new StatusHandler());
+        server.createContext("/api", apiDispatcher);
 
         server.setExecutor(null); // default executor
         server.start();

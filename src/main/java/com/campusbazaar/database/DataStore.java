@@ -234,6 +234,13 @@ public class DataStore {
         return categories;
     }
 
+    public Category getCategoryById(int id) {
+        for (Category c : categories) {
+            if (c.getCategoryId() == id) return c;
+        }
+        return null;
+    }
+
     public List<Listing> getListings() {
         return listings;
     }

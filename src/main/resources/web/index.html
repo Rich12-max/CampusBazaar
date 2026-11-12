@@ -2372,7 +2372,42 @@
       if (document.getElementById("bids-count")) {
         document.getElementById("bids-count").innerText = negotiations.length;
       }
+      syncWithJavaBackend();
     });
+
+    // --- JAVA REST BACKEND SYNCHRONIZATION ---
+    async function syncWithJavaBackend() {
+      try {
+        const res = await fetch('/api/listings');
+        if (res.ok) {
+          const data = await res.json();
+          if (data.success && Array.isArray(data.data) && data.data.length > 0) {
+            listings = data.data.map(d => ({
+              id: d.id,
+              title: d.title,
+              desc: d.description || '',
+              category: d.categoryId || 1,
+              categoryName: d.category || 'Academic Books',
+              type: (d.listingType === 'RENT') ? 'RENTAL' : (d.listingType === 'BARTER') ? 'BARTER' : 'SALE',
+              condition: d.condition || 'Like New',
+              price: d.price || 0,
+              origPrice: d.originalPrice || 0,
+              dailyRate: d.dailyRate || 0,
+              deposit: d.deposit || 0,
+              lateFee: d.lateFee || 25,
+              preferredItem: d.preferredExchange || 'Academic Books',
+              cashAdjustment: 0,
+              seller: { id: 1, name: d.sellerName || 'Aarav Patel', rating: 4.9 },
+              status: d.status || 'AVAILABLE',
+              image: d.imageUrl || 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80'
+            }));
+            renderListings();
+          }
+        }
+      } catch (err) {
+        console.log("Java Backend API running in local standalone mode:", err);
+      }
+    }
 
     // --- NAVIGATION ---
     function switchTab(tabId) {
@@ -2862,13 +2897,29 @@
       switchTab('handovers');
     }
 
-    function verifyHandoverPin(scheduleId) {
+    async function verifyHandoverPin(scheduleId) {
       const h = handovers.find(x => x.id === scheduleId);
       if (!h) return;
       const input = document.getElementById("otp-input-" + scheduleId).value.trim();
-      if (input === h.otpPin) {
+
+      let verifiedViaBackend = false;
+      try {
+        const res = await fetch('/api/handovers/verify-otp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ scheduleId, otp: input })
+        });
+        if (res.ok) {
+          const resData = await res.json();
+          if (resData.success) {
+            verifiedViaBackend = true;
+          }
+        }
+      } catch (e) {}
+
+      if (verifiedViaBackend || input === h.otpPin) {
         h.status = "VERIFIED_COMPLETED";
-        showToast("PIN Verified! Product Handover Complete & Clearance Created 🏆");
+        showToast("PIN Verified via Java Engine! Product Handover Complete 🏆");
 
         // Generate official clearance receipt
         clearanceReceipts.unshift({
@@ -3020,6 +3071,14 @@
       n.sellerNote = `Countered to ₹${cVal} for quick campus clearance.`;
       showToast(`Counter-offer of ₹${cVal} delivered to buyer! 💬`);
       renderNegotiations();
+
+      try {
+        fetch('/api/negotiations/counter', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ negotiationId: n.id, counterPrice: cVal })
+        }).catch(() => {});
+      } catch (e) {}
     }
 
     function sellerAcceptOffer(id) {
@@ -3028,6 +3087,14 @@
       n.status = "ACCEPTED";
       showToast(`Offer of ₹${n.currentPrice} accepted! Settle handover now. 🤝`);
       renderNegotiations();
+
+      try {
+        fetch('/api/negotiations/accept', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ negotiationId: n.id })
+        }).catch(() => {});
+      } catch (e) {}
     }
 
     function sellerDeclineOffer(id) {
@@ -3224,6 +3291,14 @@
       document.getElementById("nav-user-role").innerText = role === 'ADMIN' ? '🛡️ Administrator' : '🎓 Student';
       closeModal("persona-modal");
       showToast(`Switched active persona to ${name}! 🌸`);
+
+      try {
+        fetch('/api/auth/switch-persona', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ role })
+        }).catch(() => {});
+      } catch (e) {}
     }
 
     function openBuyModal(id) {
@@ -3252,7 +3327,7 @@
       openModal("rent-modal");
     }
 
-    function updateRentCalculations() {
+    async function updateRentCalculations() {
       if (!activeListingForAction) return;
       const days = parseInt(document.getElementById("rent-days-slider").value);
       document.getElementById("rent-days-val").innerText = `${days} Days`;
@@ -3260,6 +3335,26 @@
       const rate = activeListingForAction.dailyRate;
       const deposit = activeListingForAction.deposit;
       const lateFee = activeListingForAction.lateFee;
+
+      try {
+        const res = await fetch('/api/rentals/calculate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ days, dailyRate: rate, deposit, lateFeePerDay: lateFee })
+        });
+        if (res.ok) {
+          const resData = await res.json();
+          if (resData.success && resData.data) {
+            const d = resData.data;
+            document.getElementById("rent-rate-display").innerText = `₹${d.dailyRate} / day`;
+            document.getElementById("rent-charge-display").innerText = `₹${Math.round(d.baseRent)}`;
+            document.getElementById("rent-deposit-display").innerText = `₹${Math.round(d.deposit)}`;
+            document.getElementById("rent-penalty-rule").innerText = `₹${Math.round(d.lateFeePerDay)} / day overdue`;
+            document.getElementById("rent-total-display").innerText = `₹${Math.round(d.grandTotal)}`;
+            return;
+          }
+        }
+      } catch (e) {}
 
       const charge = days * rate;
       const total = charge + deposit;
@@ -3295,10 +3390,31 @@
       openModal("price-modal");
     }
 
-    function runSmartPriceCalc() {
+    async function runSmartPriceCalc() {
       const catId = parseInt(document.getElementById("calc-category").value);
       const orig = parseFloat(document.getElementById("calc-orig-price").value) || 1000;
       const cond = document.getElementById("calc-condition").value;
+
+      try {
+        const res = await fetch('/api/pricing/estimate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ categoryId: catId, originalPrice: orig, condition: cond })
+        });
+        if (res.ok) {
+          const resData = await res.json();
+          if (resData.success && resData.data) {
+            const d = resData.data;
+            document.getElementById("calc-result-range").innerText = `₹${Math.round(d.suggestedMin)} - ₹${Math.round(d.suggestedMax)}`;
+            document.getElementById("calc-result-fair").innerText = `Fair Campus Target: ₹${Math.round(d.recommendedFair)}`;
+            document.getElementById("calc-result-reason").innerText = d.reasoning || 
+              `Applied ${Math.round(d.categoryBaseline*100)}% category baseline × ${Math.round(d.conditionMultiplier*100)}% condition score.`;
+            return;
+          }
+        }
+      } catch (e) {
+        // Fallback to local calculation
+      }
 
       let catFactor = 0.55;
       if (catId === 1) catFactor = 0.60;
@@ -3402,6 +3518,26 @@
       showToast("Listing published to campus marketplace! 🌸");
       renderListings();
       document.getElementById("stat-listings").innerText = listings.length;
+
+      // Persist in Java backend
+      try {
+        fetch('/api/listings', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            title: newItem.title,
+            description: newItem.desc,
+            categoryId: newItem.category,
+            listingType: newItem.type,
+            condition: cond,
+            price: newItem.price || 0,
+            ratePerDay: newItem.dailyRate || 0,
+            deposit: newItem.deposit || 0,
+            preferredExchange: newItem.preferredItem || '',
+            imageUrl: newItem.image
+          })
+        }).catch(() => {});
+      } catch (e) {}
     }
 
     function openChatModal(id) {

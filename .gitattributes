@@ -27,3 +27,4 @@ lib/** linguist-vendored=true
 
 # Explicitly ensure all Java source files are detected
 *.java linguist-detectable=true
+

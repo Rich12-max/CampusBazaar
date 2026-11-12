@@ -503,6 +503,105 @@
       50% { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25), 0 0 22px var(--primary); }
     }
 
+    /* SELL ITEM ACTION BUTTONS */
+    .btn-sell-action {
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      color: white;
+      border: 1.5px solid rgba(255, 255, 255, 0.4);
+      padding: 8px 18px;
+      border-radius: 9999px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.32);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      flex-shrink: 0;
+    }
+
+    .btn-sell-action:hover {
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
+      background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    }
+
+    .hero-sell-btn {
+      background: rgba(255, 255, 255, 0.95);
+      color: #0F172A;
+      border: 1.5px solid rgba(255, 255, 255, 0.8);
+      padding: 9px 22px;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16);
+      transition: all 0.2s ease;
+    }
+
+    .hero-sell-btn:hover {
+      background: white;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(0, 0, 0, 0.24);
+      color: var(--primary);
+    }
+
+    .corner-search-icon-btn {
+      background: var(--card-bg);
+      color: var(--text);
+      border: 1.5px solid var(--border);
+      border-radius: 9999px;
+      padding: 7px 16px;
+      font-size: 0.86rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      flex-shrink: 0;
+    }
+
+    .corner-search-icon-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-light);
+      transform: translateY(-2px);
+    }
+
+    .quick-search-result-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      background: var(--card-bg);
+      border: 1.5px solid var(--border);
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .quick-search-result-item:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      transform: translateX(4px);
+    }
+
+    .quick-search-thumb {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
     .user-pill {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -1309,18 +1408,18 @@
       </div>
     </a>
 
-    <!-- RIGHT SIDE CLUSTER: Quick Actions, Theme Palette & Persona -->
+    <!-- RIGHT SIDE CLUSTER: Sell Button, Search, Quick Actions, Theme & Persona -->
     <div class="nav-right-cluster">
-      <button class="nav-btn nav-search-btn" onclick="focusSearchCatalogue()" title="Find items in marketplace (Press /)" style="border:1px solid var(--border); background:var(--card-bg); padding:7px 14px; font-size:0.84rem;">
-        🔍 <span>Search</span>
+      <button class="btn-sell-action" onclick="openSellItemModal()" title="Add an item to sell on campus">
+        <span>🏷️</span> <span>+ Sell Item</span>
+      </button>
+
+      <button class="corner-search-icon-btn" onclick="openQuickSearchModal()" title="Find any item you need (or press /)">
+        <span>🔍</span> <span>Find Item</span>
       </button>
 
       <button class="nav-btn" onclick="openPriceModal()" style="border:1px solid var(--border); background:var(--card-bg); padding:7px 14px; font-size:0.84rem;">
         💡 Smart Pricing
-      </button>
-
-      <button class="btn btn-primary" onclick="openAddListingModal()" style="padding:7px 18px; font-size:0.86rem; box-shadow:0 4px 14px rgba(0, 0, 0, 0.12);">
-        ➕ Post Listing
       </button>
 
       <!-- Aesthetic Theme Switcher - All 8 Themes Working + Instant Reset -->
@@ -1405,6 +1504,15 @@
         <div class="hero-chip">💡 Rule-Based Fair Price Guidance</div>
         <div class="hero-chip">🔄 Zero-Fee Direct Peer Swaps</div>
       </div>
+
+      <div style="margin-top:22px; display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+        <button class="hero-sell-btn" onclick="openSellItemModal()" title="Post an item to sell to fellow students">
+          <span style="font-size:1.15rem;">🏷️</span> <span>+ Add Sell Item</span>
+        </button>
+        <button class="btn btn-secondary" onclick="openQuickSearchModal()" style="background:rgba(255,255,255,0.22); color:white; border:1.5px solid rgba(255,255,255,0.35); padding:9px 20px; border-radius:9999px; font-weight:800; display:inline-flex; align-items:center; gap:6px; cursor:pointer;" title="Find the item you need">
+          <span>🔍</span> <span>Find Any Item</span>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -1449,6 +1557,9 @@
         <span>Available Campus Items</span>
         <span id="items-count-badge" style="background:var(--primary-light); color:var(--primary); font-size:0.8rem; padding:4px 12px; border-radius:9999px;">6 items</span>
       </div>
+      <button class="btn-sell-action" onclick="openSellItemModal()" title="Post a textbook, calculator, cycle or item to sell">
+        <span>🏷️</span> <span>+ Add Sell Item</span>
+      </button>
     </div>
 
     <div class="listing-grid" id="listing-grid">
@@ -1745,11 +1856,37 @@
     </div>
   </div>
 
+  <!-- MODAL: QUICK SEARCH DIALOG (FIND ANY ITEM) -->
+  <div class="modal-backdrop" id="quick-search-modal">
+    <div class="modal-card" style="max-width: 640px;">
+      <div class="modal-header">
+        <div class="modal-title">🔍 Find Any Campus Item</div>
+        <button class="btn-close" onclick="closeModal('quick-search-modal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div style="position:relative; margin-bottom:14px;">
+          <span style="position:absolute; left:16px; top:50%; transform:translateY(-50%); font-size:1.2rem; opacity:0.6;">🔍</span>
+          <input type="text" id="quick-search-input" class="form-control" placeholder="Search books, calculators, drafters, kettles, cycles..." style="padding-left:46px; font-size:1.05rem; font-weight:600; border-radius:14px;" oninput="onQuickSearchInput()">
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; font-size:0.82rem; color:var(--text-muted); flex-wrap:wrap; gap:8px;">
+          <span>💡 Tip: Press <kbd style="background:var(--border); padding:2px 6px; border-radius:4px; font-weight:700;">ESC</kbd> to close</span>
+          <div style="display:flex; gap:8px;">
+            <button class="btn btn-secondary" onclick="viewAllInCatalogue()" style="padding:4px 12px; font-size:0.78rem;">Full Catalog ↗</button>
+            <button class="btn-sell-action" onclick="closeModal('quick-search-modal'); openSellItemModal();" style="padding:4px 12px; font-size:0.78rem;">+ Sell Item</button>
+          </div>
+        </div>
+        <div id="quick-search-results" style="max-height:360px; overflow-y:auto; padding-right:4px;">
+          <!-- Dynamically populated via JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- MODAL: ADD LISTING -->
   <div class="modal-backdrop" id="add-modal">
     <div class="modal-card">
       <div class="modal-header">
-        <div class="modal-title">🌸 Post a New Campus Listing</div>
+        <div class="modal-title" id="add-modal-title">🏷️ Add Item to Sell on Campus</div>
         <button class="btn-close" onclick="closeModal('add-modal')">✕</button>
       </div>
       <div class="modal-body">
@@ -3188,7 +3325,24 @@
         `Applied ${Math.round(catFactor*100)}% category baseline × ${Math.round(condFactor*100)}% condition score = ${Math.round(catFactor*condFactor*100)}% retention value.`;
     }
 
+    function openSellItemModal() {
+      const modalTitle = document.getElementById("add-modal-title");
+      if (modalTitle) modalTitle.innerHTML = "🏷️ Add Item to Sell on Campus";
+      const typeSelect = document.getElementById("new-type");
+      if (typeSelect) {
+        typeSelect.value = "SALE";
+        toggleListingTypeFields();
+      }
+      openModal("add-modal");
+      setTimeout(() => {
+        const titleInput = document.getElementById("new-title");
+        if (titleInput) titleInput.focus();
+      }, 150);
+    }
+
     function openAddListingModal() {
+      const modalTitle = document.getElementById("add-modal-title");
+      if (modalTitle) modalTitle.innerHTML = "🌸 Post a New Campus Listing";
       openModal("add-modal");
     }
 
@@ -3294,42 +3448,105 @@
       }, 3000);
     }
 
-    // --- CORNER SEARCH TRIGGER CONTROLLER ---
-    function focusSearchCatalogue() {
-      switchTab('marketplace');
-      const searchSec = document.getElementById("controls-section");
-      const searchInput = document.getElementById("search-input");
-      if (searchSec) {
-        searchSec.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // --- FEATURE: QUICK SEARCH & CORNER SEARCH CONTROLLER ---
+    function openQuickSearchModal() {
+      openModal('quick-search-modal');
+      const input = document.getElementById('quick-search-input');
+      if (input) {
+        input.value = '';
+        setTimeout(() => input.focus(), 150);
       }
-      if (searchInput) {
-        setTimeout(() => {
-          searchInput.focus();
-          searchInput.select();
-          searchInput.style.transition = 'all 0.3s ease';
-          searchInput.style.boxShadow = '0 0 0 4px var(--primary), 0 8px 25px var(--card-hover-shadow)';
-          searchInput.style.borderColor = 'var(--primary)';
-          setTimeout(() => {
-            searchInput.style.boxShadow = '';
-          }, 1600);
-        }, 350);
-      }
-      showToast("Type what you need (books, calculator, cycle...) 🔍");
+      renderQuickSearchResults('');
     }
 
-    // Global hotkey: '/' or 'Ctrl+K' focuses the search box
+    function onQuickSearchInput() {
+      const query = (document.getElementById('quick-search-input')?.value || '').trim();
+      renderQuickSearchResults(query);
+    }
+
+    function renderQuickSearchResults(query) {
+      const container = document.getElementById('quick-search-results');
+      if (!container) return;
+
+      const q = query.toLowerCase();
+      const filtered = listings.filter(item => {
+        if (!q) return true;
+        return (item.title && item.title.toLowerCase().includes(q)) ||
+               (item.category && item.category.toLowerCase().includes(q)) ||
+               (item.description && item.description.toLowerCase().includes(q)) ||
+               (item.sellerName && item.sellerName.toLowerCase().includes(q));
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div style="text-align:center; padding:32px 16px; color:var(--text-muted);">
+            <div style="font-size:2rem; margin-bottom:8px;">🔍</div>
+            <div style="font-weight:700; font-size:0.95rem;">No items found matching "${query}"</div>
+            <div style="font-size:0.82rem; margin-top:4px;">Try searching for books, drafters, calculators, or cycles!</div>
+            <button class="btn-sell-action" onclick="closeModal('quick-search-modal'); openSellItemModal();" style="margin-top:14px; font-size:0.8rem; padding:6px 16px;">
+              🏷️ Can't find it? Post or Request it!
+            </button>
+          </div>`;
+        return;
+      }
+
+      container.innerHTML = filtered.map(item => `
+        <div class="quick-search-result-item" onclick="selectQuickSearchResult(${item.id})">
+          <img src="${item.imageUrl}" class="quick-search-thumb" alt="${item.title}" onerror="this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&q=80&w=300'">
+          <div style="flex:1; min-width:0;">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+              <span style="font-weight:800; font-size:0.92rem; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${item.title}</span>
+              <span style="font-weight:800; font-size:0.95rem; color:var(--primary); flex-shrink:0;">₹${item.price}</span>
+            </div>
+            <div style="display:flex; gap:8px; font-size:0.75rem; color:var(--text-muted); margin-top:3px; align-items:center;">
+              <span style="background:var(--primary-light); color:var(--primary); padding:1px 7px; border-radius:9999px; font-weight:700;">${item.category}</span>
+              <span>•</span>
+              <span>${item.condition}</span>
+              <span>•</span>
+              <span>${item.listingType === 'RENT' ? '⏳ For Rent' : (item.listingType === 'BARTER' ? '🔄 Exchange' : '🏷️ Sale')}</span>
+            </div>
+          </div>
+          <button class="btn btn-primary" style="padding:4px 12px; font-size:0.78rem; border-radius:9999px;">View</button>
+        </div>
+      `).join('');
+    }
+
+    function selectQuickSearchResult(id) {
+      closeModal('quick-search-modal');
+      switchTab('marketplace');
+      openDetailsModal(id);
+    }
+
+    function viewAllInCatalogue() {
+      const q = (document.getElementById('quick-search-input')?.value || '').trim();
+      closeModal('quick-search-modal');
+      switchTab('marketplace');
+      const searchInput = document.getElementById('search-input');
+      if (searchInput && q) {
+        searchInput.value = q;
+        filterListings();
+      }
+      const el = document.getElementById('controls-section');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function focusSearchCatalogue() {
+      openQuickSearchModal();
+    }
+
+    // Global hotkey: '/' or 'Ctrl+K' opens Quick Search Modal
     document.addEventListener("keydown", (e) => {
       if ((e.key === '/' || (e.ctrlKey && e.key.toLowerCase() === 'k')) && 
           document.activeElement.tagName !== 'INPUT' && 
           document.activeElement.tagName !== 'TEXTAREA') {
         e.preventDefault();
-        focusSearchCatalogue();
+        openQuickSearchModal();
       }
     });
   </script>
 
-  <!-- FLOATING CORNER SEARCH BUTTON -->
-  <div class="floating-corner-search" onclick="focusSearchCatalogue()" title="Find the item you need (or press /)">
+  <!-- FLOATING CORNER SEARCH BUTTON (FIXED CORNER) -->
+  <div class="floating-corner-search" onclick="openQuickSearchModal()" title="Find the item you need (or press /)">
     <span class="search-icon-symbol">🔍</span>
     <span class="search-label">Find Item</span>
     <span class="search-kbd-badge">/</span>

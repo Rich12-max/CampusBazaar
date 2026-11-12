@@ -446,6 +446,63 @@
       transform: rotate(-45deg);
     }
 
+    /* FLOATING CORNER SEARCH BUTTON */
+    .floating-corner-search {
+      position: fixed;
+      bottom: 26px;
+      right: 26px;
+      z-index: 999;
+      background: var(--hero-gradient);
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.45);
+      border-radius: 9999px;
+      padding: 12px 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.22), 0 0 16px var(--mesh-1);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(12px);
+      user-select: none;
+      animation: gentlePulseFab 3.5s infinite ease-in-out;
+    }
+
+    .floating-corner-search:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28), 0 0 24px var(--primary);
+    }
+
+    .floating-corner-search .search-icon-symbol {
+      font-size: 1.35rem;
+      transition: transform 0.2s ease;
+    }
+
+    .floating-corner-search:hover .search-icon-symbol {
+      transform: scale(1.2) rotate(12deg);
+    }
+
+    .floating-corner-search .search-label {
+      font-size: 0.92rem;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      white-space: nowrap;
+    }
+
+    .floating-corner-search .search-kbd-badge {
+      background: rgba(255, 255, 255, 0.25);
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+    }
+
+    @keyframes gentlePulseFab {
+      0%, 100% { box-shadow: 0 8px 25px rgba(0, 0, 0, 0.22), 0 0 10px var(--mesh-1); }
+      50% { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25), 0 0 22px var(--primary); }
+    }
+
     .user-pill {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -1254,6 +1311,10 @@
 
     <!-- RIGHT SIDE CLUSTER: Quick Actions, Theme Palette & Persona -->
     <div class="nav-right-cluster">
+      <button class="nav-btn nav-search-btn" onclick="focusSearchCatalogue()" title="Find items in marketplace (Press /)" style="border:1px solid var(--border); background:var(--card-bg); padding:7px 14px; font-size:0.84rem;">
+        🔍 <span>Search</span>
+      </button>
+
       <button class="nav-btn" onclick="openPriceModal()" style="border:1px solid var(--border); background:var(--card-bg); padding:7px 14px; font-size:0.84rem;">
         💡 Smart Pricing
       </button>
@@ -3232,7 +3293,47 @@
         setTimeout(() => toast.remove(), 300);
       }, 3000);
     }
+
+    // --- CORNER SEARCH TRIGGER CONTROLLER ---
+    function focusSearchCatalogue() {
+      switchTab('marketplace');
+      const searchSec = document.getElementById("controls-section");
+      const searchInput = document.getElementById("search-input");
+      if (searchSec) {
+        searchSec.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      if (searchInput) {
+        setTimeout(() => {
+          searchInput.focus();
+          searchInput.select();
+          searchInput.style.transition = 'all 0.3s ease';
+          searchInput.style.boxShadow = '0 0 0 4px var(--primary), 0 8px 25px var(--card-hover-shadow)';
+          searchInput.style.borderColor = 'var(--primary)';
+          setTimeout(() => {
+            searchInput.style.boxShadow = '';
+          }, 1600);
+        }, 350);
+      }
+      showToast("Type what you need (books, calculator, cycle...) 🔍");
+    }
+
+    // Global hotkey: '/' or 'Ctrl+K' focuses the search box
+    document.addEventListener("keydown", (e) => {
+      if ((e.key === '/' || (e.ctrlKey && e.key.toLowerCase() === 'k')) && 
+          document.activeElement.tagName !== 'INPUT' && 
+          document.activeElement.tagName !== 'TEXTAREA') {
+        e.preventDefault();
+        focusSearchCatalogue();
+      }
+    });
   </script>
+
+  <!-- FLOATING CORNER SEARCH BUTTON -->
+  <div class="floating-corner-search" onclick="focusSearchCatalogue()" title="Find the item you need (or press /)">
+    <span class="search-icon-symbol">🔍</span>
+    <span class="search-label">Find Item</span>
+    <span class="search-kbd-badge">/</span>
+  </div>
 </body>
 </html>
 
